@@ -199,10 +199,6 @@ Write-Warning "registry cancer time"
     reg ADD "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v AllocateCDRoms /t REG_DWORD /d 1 /f
     # Automatic Admin logon
     reg ADD "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v AutoAdminLogon /t REG_DWORD /d 0 /f
-    # Logo message text
-    reg ADD "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v LegalNoticeText /t REG_SZ /d "lolxd"
-    # Logon message title bar
-    reg ADD "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v LegalNoticeCaption /t REG_SZ /d "lol"
     # Wipe page file from shutdown
     reg ADD "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v ClearPageFileAtShutdown /t REG_DWORD /d 1 /f
     # Disallow remote access to floppy disks because that will do anything
@@ -546,9 +542,6 @@ if ($option -eq 2) {
 
 
 if ($option -eq 3) {
-
-#i've got no fucking clue if this will work
-#lets find out
 
 Invoke-Expression `
     ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
