@@ -6,7 +6,7 @@ $option = Read-Host '
 0. output media files 
 1. nuke autosecure L9 hack
 2. netstat mech that I stole from stackoverflow
-3. install various anti-rootkit and anti-virus
+3. install various anti-rootkit and anti-virus (FIX LATER CHOCO SUCKS)
 '
 
 if ($option -eq 0) {
@@ -15,7 +15,9 @@ if ($option -eq 0) {
     New-Item -Path C:\Users\$user\Desktop\W12\programfiles -ItemType directory
     New-Item -Path C:\Users\$user\Desktop\W12\programfilesx86 -ItemType directory
     New-Item -Path C:\Users\$user\Desktop\W12\documents -ItemType directory
-	 New-Item -Path C:\Users\$user\Desktop\W12\OS_search_engine -ItemType directory
+    New-Item -Path C:\Users\$user\Desktop\W12\OS_search_engine -ItemType directory
+    New-Item -Path C:\Users\$user\Desktop\W12\users.txt -ItemType file
+    New-Item -Path C:\Users\$user\Desktop\W12\groups.txt -ItemType file
 Write-Warning "grabbing user files"  
     Get-ChildItem -Path "C:\Users\*" -Include *.jpg,*.png,*.aac,*.ac3,*.avi,*.aiff,*.bat,*.bmp,*.exe,*.flac,*.gif,*.jpeg,*.mov,*.m3u,*.m4p,*.mp2,*.mp3,*.mp4,*.mpeg4,*.midi,*.msi,*.ogg,*.png,*.txt,*.sh,*.wav,*.wma,*.vqf,*.pcap,*.zip,*.pdf,*.json -Recurse | Copy-Item -Destination C:\Users\$user\Desktop\W12\userfiles
 Write-Warning "grabbing program files"
@@ -25,10 +27,10 @@ Write-Warning "grabbing documents"
     Get-ChildItem -Path "C:\Users\$user\Documents\*" -Include *.jpg,*.png,*.aac,*.ac3,*.avi,*.aiff,*.bat,*.bmp,*.exe,*.flac,*.gif,*.jpeg,*.mov,*.m3u,*.m4p,*.mp2,*.mp3,*.mp4,*.mpeg4,*.midi,*.msi,*.ogg,*.png,*.txt,*.sh,*.wav,*.wma,*.vqf,*.pcap,*.zip,*.pdf,*.json -Recurse | Copy-Item -Destination C:\Users\$user\Desktop\W12\documentsandsettings
 Write-Warning "special media files"
     Get-ChildItem -Path C:\Users -Include .jpg,.png,.jpeg,.avi,.mp4,.mp3,*.wav -Exclude .dll,.doc,*.docx,  -File -Recurse -ErrorAction SilentlyContinue | Out-File -filepath C:\Users\$user\Desktop\W12\Mediafiles.txt
-    'these are only copies'
+Write-Warning "these are only copies"
 Write-Warning "managing users"
-    net user > W12\users.txt
-    net localgroup > W12\groups.txt
+net user > C:\Users\$user\Desktop\W12\users.txt
+net localgroup > C:\Users\$user\Desktop\W12\groups.txt
 }
 
 if ($option -eq 1) {
@@ -68,62 +70,6 @@ if ($option -eq 1) {
     New-Item -Path C:\Users\$user\Desktop\W12\hosts -ItemType directory
     Get-ChildItem -Path "C:\Windows\System32\drivers\etc\hosts" | Copy-Item -Destination C:\Users\$user\Desktop\W12\hosts
 
-# feature disabling
-    Write-Warning "disabling useless and insecure stuff"
-    dism /online /disable-feature /featurename:IIS-WebServerRole
-	dism /online /disable-feature /featurename:IIS-WebServer
-	dism /online /disable-feature /featurename:IIS-CommonHttpFeatures
-	dism /online /disable-feature /featurename:IIS-HttpErrors
-	dism /online /disable-feature /featurename:IIS-HttpRedirect
-	dism /online /disable-feature /featurename:IIS-ApplicationDevelopment
-	dism /online /disable-feature /featurename:IIS-NetFxExtensibility
-	dism /online /disable-feature /featurename:IIS-NetFxExtensibility45
-	dism /online /disable-feature /featurename:IIS-HealthAndDiagnostics
-	dism /online /disable-feature /featurename:IIS-HttpLogging
-	dism /online /disable-feature /featurename:IIS-LoggingLibraries
-	dism /online /disable-feature /featurename:IIS-RequestMonitor
-	dism /online /disable-feature /featurename:IIS-HttpTracing
-	dism /online /disable-feature /featurename:IIS-Security
-	dism /online /disable-feature /featurename:IIS-URLAuthorization
-	dism /online /disable-feature /featurename:IIS-RequestFiltering
-	dism /online /disable-feature /featurename:IIS-IPSecurity
-	dism /online /disable-feature /featurename:IIS-Performance
-	dism /online /disable-feature /featurename:IIS-HttpCompressionDynamic
-	dism /online /disable-feature /featurename:IIS-WebServerManagementTools
-	dism /online /disable-feature /featurename:IIS-ManagementScriptingTools
-	dism /online /disable-feature /featurename:IIS-IIS6ManagementCompatibility
-	dism /online /disable-feature /featurename:IIS-Metabase
-	dism /online /disable-feature /featurename:IIS-HostableWebCore
-	dism /online /disable-feature /featurename:IIS-StaticContent
-	dism /online /disable-feature /featurename:IIS-DefaultDocument
-	dism /online /disable-feature /featurename:IIS-DirectoryBrowsing
-	dism /online /disable-feature /featurename:IIS-WebDAV
-	dism /online /disable-feature /featurename:IIS-WebSockets
-	dism /online /disable-feature /featurename:IIS-ApplicationInit
-	dism /online /disable-feature /featurename:IIS-ASPNET
-	dism /online /disable-feature /featurename:IIS-ASPNET45
-	dism /online /disable-feature /featurename:IIS-ASP
-	dism /online /disable-feature /featurename:IIS-CGI 
-	dism /online /disable-feature /featurename:IIS-ISAPIExtensions
-	dism /online /disable-feature /featurename:IIS-ISAPIFilter
-	dism /online /disable-feature /featurename:IIS-ServerSideIncludes
-	dism /online /disable-feature /featurename:IIS-CustomLogging
-	dism /online /disable-feature /featurename:IIS-BasicAuthentication
-	dism /online /disable-feature /featurename:IIS-HttpCompressionStatic
-	dism /online /disable-feature /featurename:IIS-ManagementConsole
-	dism /online /disable-feature /featurename:IIS-ManagementService
-	dism /online /disable-feature /featurename:IIS-WMICompatibility
-	dism /online /disable-feature /featurename:IIS-LegacyScripts
-  	dism /online /disable-feature /featurename:IIS-LegacySnapIn
-  	dism /online /disable-feature /featurename:IIS-FTPServer
-	dism /online /disable-feature /featurename:IIS-FTPSvc
-	dism /online /disable-feature /featurename:IIS-FTPExtensibility
-	dism /online /disable-feature /featurename:TFTP
-	dism /online /disable-feature /featurename:TelnetClient
-	dism /online /disable-feature /featurename:TelnetServer
-    dism /online /disable-feature /featurename:"SMB1Protocol"
-    Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force
-
 # large activity processes
     Write-Warning "investigating processes"
     Get-Process | Where-Object {$_.WorkingSet -gt 20000000} > W12\interestingprocess.txt
@@ -131,7 +77,7 @@ if ($option -eq 1) {
 # firewall settings
     Write-Warning "Hoisting up the firewall"
     Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True
-	 Set-NetFirewallProfile -DefaultInboundAction Block -DefaultOutboundAction Allow -NotifyOnListen True -AllowUnicastResponseToMulticast True -LogFileName %SystemRoot%\System32\LogFiles\Firewall\pfirewall.log
+    Set-NetFirewallProfile -DefaultInboundAction Block -DefaultOutboundAction Allow -NotifyOnListen True -AllowUnicastResponseToMulticast True -LogFileName %SystemRoot%\System32\LogFiles\Firewall\pfirewall.log
     netsh advfirewall firewall set rule group="Network Discovery" new enable=No
     netsh advfirewall firewall set rule group="File and Printer Sharing" new enable=No
     netsh advfirewall firewall add rule name="block_RemoteRegistry_in" dir=in service="RemoteRegistry" action=block enable=yes
@@ -156,13 +102,12 @@ if ($option -eq 1) {
     Set-NetConnectionProfile -NetworkCategory Public
     Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\010103000F0000F0010000000F0000F0C967A3643C3AD745950DA7859209176EF5B87C875FA20DF21951640E807D7C24" -Name "Category" -ErrorAction SilentlyContinue
 
-Write-Warning "registry cancer time"
-
 # disable remote desktop
+Write-Warning "registry cancer time"
     reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 1 /f
     reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v UserAuthentication /t REG_DWORD /d 0 /f
     reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v AllowTSConnections /t REG_DWORD /d 0 /f
-	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fAllowToGetHelp /t REG_DWORD /d 0 /f
+    reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fAllowToGetHelp /t REG_DWORD /d 0 /f
     reg add "HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows NT\Terminal Services" /v "AllowSignedFiles" /t REG_DWORD /d 0 /f
     reg add "HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows NT\Terminal Services" /v "AllowUnsignedFiles" /t REG_DWORD /d 0 /f
     reg add "HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows NT\Terminal Services" /v "DisablePasswordSaving" /t REG_DWORD /d 1 /f
@@ -194,7 +139,7 @@ Write-Warning "registry cancer time"
     reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate /v DisableWindowsUpdateAccess /t REG_DWORD /d 0 /f
 
 # Common Policies
-    Write-Warning "starting policies might take 50 years"
+Write-Warning "starting policies might take 50 years"
     # Restrict CD ROM drive
     reg ADD "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v AllocateCDRoms /t REG_DWORD /d 1 /f
     # Automatic Admin logon
@@ -325,16 +270,16 @@ Write-Warning "registry cancer time"
 # service time
 Write-Warning "cancer part 2: services"
     cmd.exe /c 'sc stop tlntsvr'
-	cmd.exe /c 'sc config tlntsvr start= disabled'
-	cmd.exe /c 'sc stop msftpsvc'
-	cmd.exe /c 'sc config msftpsvc start= disabled'
-	cmd.exe /c 'sc stop snmptrap'
-	cmd.exe /c 'sc config snmptrap start= disabled'
-	cmd.exe /c 'sc stop ssdpsrv'
-	cmd.exe /c 'sc config ssdpsrv start= disabled'
-	cmd.exe /c 'sc stop termservice'
-	cmd.exe /c 'sc config termservice start= disabled'
-	cmd.exe /c 'sc stop sessionenv'
+    cmd.exe /c 'sc config tlntsvr start= disabled'
+    cmd.exe /c 'sc stop msftpsvc'
+    cmd.exe /c 'sc config msftpsvc start= disabled'
+    cmd.exe /c 'sc stop snmptrap'
+    cmd.exe /c 'sc config snmptrap start= disabled'
+    cmd.exe /c 'sc stop ssdpsrv'
+    cmd.exe /c 'sc config ssdpsrv start= disabled'
+    cmd.exe /c 'sc stop termservice'
+    cmd.exe /c 'sc config termservice start= disabled'
+    cmd.exe /c 'sc stop sessionenv'
 	cmd.exe /c 'sc config sessionenv start= disabled'
 	cmd.exe /c 'sc stop remoteregistry'
 	cmd.exe /c 'sc config remoteregistry start= disabled'
@@ -508,6 +453,63 @@ Write-Warning "cancer part 2: services"
     cmd.exe /c 'sc config SCPolicySvc start= auto'
     cmd.exe /c 'sc start wscsvc'
     cmd.exe /c 'sc config wscsvc start= auto'
+
+# feature disabling
+    Write-Warning "disabling useless and insecure stuff"
+     dism /online /disable-feature /featurename:IIS-WebServerRole
+	dism /online /disable-feature /featurename:IIS-WebServer
+	dism /online /disable-feature /featurename:IIS-CommonHttpFeatures
+	dism /online /disable-feature /featurename:IIS-HttpErrors
+	dism /online /disable-feature /featurename:IIS-HttpRedirect
+	dism /online /disable-feature /featurename:IIS-ApplicationDevelopment
+	dism /online /disable-feature /featurename:IIS-NetFxExtensibility
+	dism /online /disable-feature /featurename:IIS-NetFxExtensibility45
+	dism /online /disable-feature /featurename:IIS-HealthAndDiagnostics
+	dism /online /disable-feature /featurename:IIS-HttpLogging
+	dism /online /disable-feature /featurename:IIS-LoggingLibraries
+	dism /online /disable-feature /featurename:IIS-RequestMonitor
+	dism /online /disable-feature /featurename:IIS-HttpTracing
+	dism /online /disable-feature /featurename:IIS-Security
+	dism /online /disable-feature /featurename:IIS-URLAuthorization
+	dism /online /disable-feature /featurename:IIS-RequestFiltering
+	dism /online /disable-feature /featurename:IIS-IPSecurity
+	dism /online /disable-feature /featurename:IIS-Performance
+	dism /online /disable-feature /featurename:IIS-HttpCompressionDynamic
+	dism /online /disable-feature /featurename:IIS-WebServerManagementTools
+	dism /online /disable-feature /featurename:IIS-ManagementScriptingTools
+	dism /online /disable-feature /featurename:IIS-IIS6ManagementCompatibility
+	dism /online /disable-feature /featurename:IIS-Metabase
+	dism /online /disable-feature /featurename:IIS-HostableWebCore
+	dism /online /disable-feature /featurename:IIS-StaticContent
+	dism /online /disable-feature /featurename:IIS-DefaultDocument
+	dism /online /disable-feature /featurename:IIS-DirectoryBrowsing
+	dism /online /disable-feature /featurename:IIS-WebDAV
+	dism /online /disable-feature /featurename:IIS-WebSockets
+	dism /online /disable-feature /featurename:IIS-ApplicationInit
+	dism /online /disable-feature /featurename:IIS-ASPNET
+	dism /online /disable-feature /featurename:IIS-ASPNET45
+	dism /online /disable-feature /featurename:IIS-ASP
+	dism /online /disable-feature /featurename:IIS-CGI 
+	dism /online /disable-feature /featurename:IIS-ISAPIExtensions
+	dism /online /disable-feature /featurename:IIS-ISAPIFilter
+	dism /online /disable-feature /featurename:IIS-ServerSideIncludes
+	dism /online /disable-feature /featurename:IIS-CustomLogging
+	dism /online /disable-feature /featurename:IIS-BasicAuthentication
+	dism /online /disable-feature /featurename:IIS-HttpCompressionStatic
+	dism /online /disable-feature /featurename:IIS-ManagementConsole
+	dism /online /disable-feature /featurename:IIS-ManagementService
+	dism /online /disable-feature /featurename:IIS-WMICompatibility
+	dism /online /disable-feature /featurename:IIS-LegacyScripts
+  	dism /online /disable-feature /featurename:IIS-LegacySnapIn
+  	dism /online /disable-feature /featurename:IIS-FTPServer
+	dism /online /disable-feature /featurename:IIS-FTPSvc
+	dism /online /disable-feature /featurename:IIS-FTPExtensibility
+	dism /online /disable-feature /featurename:TFTP
+	dism /online /disable-feature /featurename:TelnetClient
+	dism /online /disable-feature /featurename:TelnetServer
+        dism /online /disable-feature /featurename:"SMB1Protocol"
+    Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force -norestart
+
 echo 'done :)'
 }
 
@@ -543,8 +545,4 @@ if ($option -eq 2) {
 
 if ($option -eq 3) {
 
-Invoke-Expression `
-    ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-    choco install ossec-client
-    choco install bulk-crap-uninstaller
 }
