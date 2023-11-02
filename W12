@@ -74,6 +74,30 @@ if ($option -eq 1) {
     Write-Warning "investigating processes"
     Get-Process | Where-Object {$_.WorkingSet -gt 20000000} > W12\interestingprocess.txt
 
+# running services to ensure script runs properly
+    cmd.exe /c 'sc start wuauserv'
+    cmd.exe /c 'sc config wuauserv start= auto'
+    cmd.exe /c 'sc start EventLog'
+    cmd.exe /c 'sc config EventLog start= auto'
+    cmd.exe /c 'sc start MpsSvc'
+    cmd.exe /c 'sc config MpsSvc start= auto'
+    cmd.exe /c 'sc start WinDefend'
+    cmd.exe /c 'sc config WinDefend start= auto'
+    cmd.exe /c 'sc start WdNisSvc'
+    cmd.exe /c 'sc config WdNisSvc start= auto'
+    cmd.exe /c 'sc start Sense'
+    cmd.exe /c 'sc config Sense start= auto'
+    cmd.exe /c 'sc start Schedule'
+    cmd.exe /c 'sc config Schedule start= auto'
+    cmd.exe /c 'sc start SCardSvr'
+    cmd.exe /c 'sc config SCardSvr start= auto'
+    cmd.exe /c 'sc start ScDeviceEnum'
+    cmd.exe /c 'sc config ScDeviceEnum start= auto'
+    cmd.exe /c 'sc start SCPolicySvc'
+    cmd.exe /c 'sc config SCPolicySvc start= auto'
+    cmd.exe /c 'sc start wscsvc'
+    cmd.exe /c 'sc config wscsvc start= auto'
+
 # firewall settings
     Write-Warning "Hoisting up the firewall"
     Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True
@@ -92,7 +116,7 @@ if ($option -eq 1) {
     netsh advfirewall firewall set rule name="netcat" new enable=no
     New-NetFirewallRule -DisplayName "sshTCP" -Direction Inbound -LocalPort 22 -Protocol TCP -Action Block #ssh
     New-NetFirewallRule -DisplayName "ftpTCP" -Direction Inbound -LocalPort 21 -Protocol TCP -Action Block #ftp
-    New-NetFirewallRule -DisplayName "telnetTCP" -Direction Inbound -LocalPort 23 -Protocol TCP er-Action Block #telnet
+    New-NetFirewallRule -DisplayName "telnetTCP" -Direction Inbound -LocalPort 23 -Protocol TCP -Action Block #telnet
     New-NetFirewallRule -DisplayName "SMTPTCP" -Direction Inbound -LocalPort 25 -Protocol TCP -Action Block #SMTP
     New-NetFirewallRule -DisplayName "POP3TCP" -Direction Inbound -LocalPort 110 -Protocol TCP -Action Block #POP3
     New-NetFirewallRule -DisplayName "SNMPTCP" -Direction Inbound -LocalPort 161 -Protocol TCP -Action Block #SNMP
@@ -194,8 +218,6 @@ Write-Warning "starting policies might take 50 years"
     reg ADD HKLM\SYSTEM\CurrentControlSet\Control\Lsa /v everyoneincludesanonymous /t REG_DWORD /d 0 /f 
     # Don't SMB Passwords unencrypted to third party
     reg ADD HKLM\SYSTEM\CurrentControlSet\services\LanmanWorkstation\Parameters /v EnablePlainTextPassword /t REG_DWORD /d 0 /f
-    # Null Session Pipes Cleared
-    reg ADD HKLM\SYSTEM\CurrentControlSet\services\LanmanServer\Parameters /v NullSessionPipes /t REG_MULTI_SZ /d "" /f
     # Remotely accessible registry paths cleared
     reg ADD HKLM\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\AllowedExactPaths /v Machine /t REG_MULTI_SZ /d "" /f
     # Remotely accessible registry paths and sub-paths cleared
@@ -429,30 +451,6 @@ Write-Warning "cancer part 2: services"
     cmd.exe /c 'sc config iphlpsvc start= disabled'
     cmd.exe /c 'sc stop AdobeARMservice'
     cmd.exe /c 'sc config AdobeARMservice start= disabled'
-
-# services that stay running
-    cmd.exe /c 'sc start wuauserv'
-    cmd.exe /c 'sc config wuauserv start= auto'
-    cmd.exe /c 'sc start EventLog'
-    cmd.exe /c 'sc config EventLog start= auto'
-    cmd.exe /c 'sc start MpsSvc'
-    cmd.exe /c 'sc config MpsSvc start= auto'
-    cmd.exe /c 'sc start WinDefend'
-    cmd.exe /c 'sc config WinDefend start= auto'
-    cmd.exe /c 'sc start WdNisSvc'
-    cmd.exe /c 'sc config WdNisSvc start= auto'
-    cmd.exe /c 'sc start Sense'
-    cmd.exe /c 'sc config Sense start= auto'
-    cmd.exe /c 'sc start Schedule'
-    cmd.exe /c 'sc config Schedule start= auto'
-    cmd.exe /c 'sc start SCardSvr'
-    cmd.exe /c 'sc config SCardSvr start= auto'
-    cmd.exe /c 'sc start ScDeviceEnum'
-    cmd.exe /c 'sc config ScDeviceEnum start= auto'
-    cmd.exe /c 'sc start SCPolicySvc'
-    cmd.exe /c 'sc config SCPolicySvc start= auto'
-    cmd.exe /c 'sc start wscsvc'
-    cmd.exe /c 'sc config wscsvc start= auto'
 
 # feature disabling
     Write-Warning "disabling useless and insecure stuff"
