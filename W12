@@ -97,6 +97,7 @@ if ($option -eq 1) {
     cmd.exe /c 'sc config SCPolicySvc start= auto'
     cmd.exe /c 'sc start wscsvc'
     cmd.exe /c 'sc config wscsvc start= auto'
+    Start-Sleep -Seconds 5
 
 # firewall settings
     Write-Warning "Hoisting up the firewall"
@@ -218,12 +219,6 @@ Write-Warning "starting policies might take 50 years"
     reg ADD HKLM\SYSTEM\CurrentControlSet\Control\Lsa /v everyoneincludesanonymous /t REG_DWORD /d 0 /f 
     # Don't SMB Passwords unencrypted to third party
     reg ADD HKLM\SYSTEM\CurrentControlSet\services\LanmanWorkstation\Parameters /v EnablePlainTextPassword /t REG_DWORD /d 0 /f
-    # Remotely accessible registry paths cleared
-    reg ADD HKLM\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\AllowedExactPaths /v Machine /t REG_MULTI_SZ /d "" /f
-    # Remotely accessible registry paths and sub-paths cleared
-    reg ADD HKLM\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\AllowedPaths /v Machine /t REG_MULTI_SZ /d "" /f
-    # Restict anonymous access to named pipes and shares
-    reg ADD HKLM\SYSTEM\CurrentControlSet\services\LanmanServer\Parameters /v NullSessionShares /t REG_MULTI_SZ /d "" /f
     # Allow to use Machine ID for NTLM
     reg ADD HKLM\SYSTEM\CurrentControlSet\Control\Lsa /v UseMachineId /t REG_DWORD /d 0 /f
     # Enable LSA protection
@@ -505,7 +500,7 @@ Write-Warning "cancer part 2: services"
 	dism /online /disable-feature /featurename:TFTP
 	dism /online /disable-feature /featurename:TelnetClient
 	dism /online /disable-feature /featurename:TelnetServer
-        dism /online /disable-feature /featurename:"SMB1Protocol"
+    dism /online /disable-feature /featurename:"SMB1Protocol"
     Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force -norestart
 
 echo 'done :)'
