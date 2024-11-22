@@ -79,28 +79,28 @@ if ($option -eq 1) {
     Get-Process | Where-Object {$_.WorkingSet -gt 20000000} > W12\interestingprocess.txt
 
 # running services to ensure script runs properly
-    cmd.exe /c 'sc start wuauserv'
-    cmd.exe /c 'sc config wuauserv start= auto'
-    cmd.exe /c 'sc start EventLog'
-    cmd.exe /c 'sc config EventLog start= auto'
-    cmd.exe /c 'sc start MpsSvc'
-    cmd.exe /c 'sc config MpsSvc start= auto'
-    cmd.exe /c 'sc start WinDefend'
-    cmd.exe /c 'sc config WinDefend start= auto'
-    cmd.exe /c 'sc start WdNisSvc'
-    cmd.exe /c 'sc config WdNisSvc start= auto'
-    cmd.exe /c 'sc start Sense'
-    cmd.exe /c 'sc config Sense start= auto'
-    cmd.exe /c 'sc start Schedule'
-    cmd.exe /c 'sc config Schedule start= auto'
-    cmd.exe /c 'sc start SCardSvr'
-    cmd.exe /c 'sc config SCardSvr start= auto'
-    cmd.exe /c 'sc start ScDeviceEnum'
-    cmd.exe /c 'sc config ScDeviceEnum start= auto'
-    cmd.exe /c 'sc start SCPolicySvc'
-    cmd.exe /c 'sc config SCPolicySvc start= auto'
-    cmd.exe /c 'sc start wscsvc'
-    cmd.exe /c 'sc config wscsvc start= auto'
+    cmd.exe /c 'sc start wuauserv' -Force -norestart
+    cmd.exe /c 'sc config wuauserv start= auto' -Force -norestart
+    cmd.exe /c 'sc start EventLog' -Force -norestart
+    cmd.exe /c 'sc config EventLog start= auto' -Force -norestart
+    cmd.exe /c 'sc start MpsSvc' -Force -norestart
+    cmd.exe /c 'sc config MpsSvc start= auto' -Force -norestart
+    cmd.exe /c 'sc start WinDefend' -Force -norestart
+    cmd.exe /c 'sc config WinDefend start= auto' -Force -norestart
+    cmd.exe /c 'sc start WdNisSvc' -Force -norestart
+    cmd.exe /c 'sc config WdNisSvc start= auto' -Force -norestart
+    cmd.exe /c 'sc start Sense' -Force -norestart
+    cmd.exe /c 'sc config Sense start= auto' -Force -norestart
+    cmd.exe /c 'sc start Schedule' -Force -norestart
+    cmd.exe /c 'sc config Schedule start= auto' -Force -norestart
+    cmd.exe /c 'sc start SCardSvr' -Force -norestart
+    cmd.exe /c 'sc config SCardSvr start= auto' -Force -norestart
+    cmd.exe /c 'sc start ScDeviceEnum' -Force -norestart
+    cmd.exe /c 'sc config ScDeviceEnum start= auto' -Force -norestart
+    cmd.exe /c 'sc start SCPolicySvc' -Force -norestart
+    cmd.exe /c 'sc config SCPolicySvc start= auto' -Force -norestart
+    cmd.exe /c 'sc start wscsvc' -Force -norestart
+    cmd.exe /c 'sc config wscsvc start= auto' -Force -norestart
     Start-Sleep -Seconds 5
 
 # firewall settings
@@ -290,222 +290,222 @@ Write-Warning "starting policies might take 50 years"
     
 # service time
 Write-Warning "cancer part 2: services"
-    cmd.exe /c 'sc stop tlntsvr'
-    cmd.exe /c 'sc config tlntsvr start= disabled'
-    cmd.exe /c 'sc stop msftpsvc'
-    cmd.exe /c 'sc config msftpsvc start= disabled'
-    cmd.exe /c 'sc stop snmptrap'
-    cmd.exe /c 'sc config snmptrap start= disabled'
-    cmd.exe /c 'sc stop ssdpsrv'
-    cmd.exe /c 'sc config ssdpsrv start= disabled'
-    cmd.exe /c 'sc stop termservice'
-    cmd.exe /c 'sc config termservice start= disabled'
-    cmd.exe /c 'sc stop sessionenv'
-	cmd.exe /c 'sc config sessionenv start= disabled'
-	cmd.exe /c 'sc stop remoteregistry'
-	cmd.exe /c 'sc config remoteregistry start= disabled'
-	cmd.exe /c 'sc stop Messenger'
-	cmd.exe /c 'sc config Messenger start= disabled'
-	cmd.exe /c 'sc stop upnphos'
-	cmd.exe /c 'sc config upnphos start= disabled'
-	cmd.exe /c 'sc stop WAS'
-	cmd.exe /c 'sc config WAS start= disabled'
-	cmd.exe /c 'sc stop RemoteAccess'
-	cmd.exe /c 'sc config RemoteAccess start= disabled'
-	cmd.exe /c 'sc stop mnmsrvc'
-	cmd.exe /c 'sc config mnmsrvc start= disabled'
-	cmd.exe /c 'sc stop NetTcpPortSharing'
-	cmd.exe /c 'sc config NetTcpPortSharing start= disabled'
-	cmd.exe /c 'sc stop RasMan'
-	cmd.exe /c 'sc config RasMan start= disabled'
-	cmd.exe /c 'sc stop TabletInputService'
-	cmd.exe /c 'sc config TabletInputService start= disabled'
-	cmd.exe /c 'sc stop RpcSs'
-	cmd.exe /c 'sc config RpcSs start= disabled'
-	cmd.exe /c 'sc stop SENS'
-	cmd.exe /c 'sc config SENS start= disabled'
-	cmd.exe /c 'sc stop EventSystem'
-	cmd.exe /c 'sc config EventSystem start= disabled'
-	cmd.exe /c 'sc stop XblAuthManager'
-	cmd.exe /c 'sc config XblAuthManager start= disabled'
-	cmd.exe /c 'sc stop XblGameSave'
-	cmd.exe /c 'sc config XblGameSave start= disabled'
-	cmd.exe /c 'sc stop XboxGipSvc'
-	cmd.exe /c 'sc config XboxGipSvc start= disabled'
-	cmd.exe /c 'sc stop xboxgip'
-	cmd.exe /c 'sc config xboxgip start= disabled'
-	cmd.exe /c 'sc stop xbgm'
-	cmd.exe /c 'sc config xbgm start= disabled'
-	cmd.exe /c 'sc stop SysMain'
-	cmd.exe /c 'sc config SysMain start= disabled'
-    cmd.exe /c 'sc stop seclogon'
-    cmd.exe /c 'sc config seclogon start= disabled'
-    cmd.exe /c 'sc stop TapiSrv'
-    cmd.exe /c 'sc config TapiSrv start= disabled'
-    cmd.exe /c 'sc stop p2pimsvc'
-    cmd.exe /c 'sc config p2pimsvc start= disabled'
-    cmd.exe /c 'sc stop simptcp'
-    cmd.exe /c 'sc config simptcp start= disabled'
-    cmd.exe /c 'sc stop fax'
-    cmd.exe /c 'sc config fax start= disabled'
-    cmd.exe /c 'sc stop Msftpsvc'
-    cmd.exe /c 'sc config Msftpsvc start= disabled'
-    cmd.exe /c 'sc stop iprip'
-    cmd.exe /c 'sc config iprip start= disabled'
-    cmd.exe /c 'sc stop ftpsvc'
-    cmd.exe /c 'sc config ftpsvc start= disabled'
-    cmd.exe /c 'sc stop RasAuto'
-    cmd.exe /c 'sc config RasAuto start= disabled'
-    cmd.exe /c 'sc stop W3svc'
-    cmd.exe /c 'sc config W3svc start= disabled'
-    cmd.exe /c 'sc stop Smtpsvc'
-    cmd.exe /c 'sc config Smtpsvc start= disabled'
-    cmd.exe /c 'sc stop Dfs'
-    cmd.exe /c 'sc config Dfs start= disabled'
-    cmd.exe /c 'sc stop TrkWks'
-    cmd.exe /c 'sc config TrkWks start= disabled'
-    cmd.exe /c 'sc stop MSDTC'
-    cmd.exe /c 'sc config MSDTC start= disabled'
-    cmd.exe /c 'sc stop ERSvc'
-    cmd.exe /c 'sc config ERSvc start= disabled'
-    cmd.exe /c 'sc stop NtFrs'
-    cmd.exe /c 'sc config NtFrs start= disabled'
-    cmd.exe /c 'sc stop Iisadmin'
-    cmd.exe /c 'sc config Iisadmin start= disabled'
-    cmd.exe /c 'sc stop IsmServ'
+    cmd.exe /c 'sc stop tlntsvr' -Force -norestart
+    cmd.exe /c 'sc config tlntsvr start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop msftpsvc' -Force -norestart
+    cmd.exe /c 'sc config msftpsvc start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop snmptrap' -Force -norestart
+    cmd.exe /c 'sc config snmptrap start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop ssdpsrv' -Force -norestart
+    cmd.exe /c 'sc config ssdpsrv start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop termservice' -Force -norestart
+    cmd.exe /c 'sc config termservice start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop sessionenv' -Force -norestart
+	cmd.exe /c 'sc config sessionenv start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop remoteregistry' -Force -norestart
+	cmd.exe /c 'sc config remoteregistry start= disabled'-Force -norestart
+	cmd.exe /c 'sc stop Messenger' -Force -norestart
+	cmd.exe /c 'sc config Messenger start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop upnphos' -Force -norestart
+	cmd.exe /c 'sc config upnphos start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop WAS' -Force -norestart
+	cmd.exe /c 'sc config WAS start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop RemoteAccess' -Force -norestart
+	cmd.exe /c 'sc config RemoteAccess start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop mnmsrvc' -Force -norestart
+	cmd.exe /c 'sc config mnmsrvc start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop NetTcpPortSharing' -Force -norestart
+	cmd.exe /c 'sc config NetTcpPortSharing start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop RasMan' -Force -norestart
+	cmd.exe /c 'sc config RasMan start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop TabletInputService' -Force -norestart
+	cmd.exe /c 'sc config TabletInputService start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop RpcSs' -Force -norestart
+	cmd.exe /c 'sc config RpcSs start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop SENS' -Force -norestart
+	cmd.exe /c 'sc config SENS start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop EventSystem' -Force -norestart
+	cmd.exe /c 'sc config EventSystem start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop XblAuthManager' -Force -norestart
+	cmd.exe /c 'sc config XblAuthManager start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop XblGameSave' -Force -norestart
+	cmd.exe /c 'sc config XblGameSave start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop XboxGipSvc' -Force -norestart
+	cmd.exe /c 'sc config XboxGipSvc start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop xboxgip' -Force -norestart
+	cmd.exe /c 'sc config xboxgip start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop xbgm' -Force -norestart
+	cmd.exe /c 'sc config xbgm start= disabled' -Force -norestart
+	cmd.exe /c 'sc stop SysMain' -Force -norestart
+	cmd.exe /c 'sc config SysMain start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop seclogon' -Force -norestart
+    cmd.exe /c 'sc config seclogon start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop TapiSrv' -Force -norestart
+    cmd.exe /c 'sc config TapiSrv start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop p2pimsvc' -Force -norestart
+    cmd.exe /c 'sc config p2pimsvc start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop simptcp' -Force -norestart
+    cmd.exe /c 'sc config simptcp start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop fax' -Force -norestart
+    cmd.exe /c 'sc config fax start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop Msftpsvc' -Force -norestart
+    cmd.exe /c 'sc config Msftpsvc start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop iprip' -Force -norestart
+    cmd.exe /c 'sc config iprip start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop ftpsvc' -Force -norestart
+    cmd.exe /c 'sc config ftpsvc start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop RasAuto' -Force -norestart
+    cmd.exe /c 'sc config RasAuto start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop W3svc' -Force -norestart
+    cmd.exe /c 'sc config W3svc start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop Smtpsvc' -Force -norestart
+    cmd.exe /c 'sc config Smtpsvc start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop Dfs' -Force -norestart
+    cmd.exe /c 'sc config Dfs start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop TrkWks' -Force -norestart
+    cmd.exe /c 'sc config TrkWks start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop MSDTC' -Force -norestart
+    cmd.exe /c 'sc config MSDTC start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop ERSvc' -Force -norestart
+    cmd.exe /c 'sc config ERSvc start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop NtFrs' -Force -norestart
+    cmd.exe /c 'sc config NtFrs start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop Iisadmin' -Force -norestart
+    cmd.exe /c 'sc config Iisadmin start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop IsmServ' -Force -norestart
     cmd.exe /c 'sc config IsmServ start= disabled'
-    cmd.exe /c 'sc stop WmdmPmSN'
-    cmd.exe /c 'sc config WmdmPmSN start= disabled'
-    cmd.exe /c 'sc stop helpsvc'
-    cmd.exe /c 'sc config helpsvc start= disabled'
-    cmd.exe /c 'sc stop Spooler'
-    cmd.exe /c 'sc config Spooler start= disabled'
-    cmd.exe /c 'sc stop RDSessMgr'
-    cmd.exe /c 'sc config RDSessMgr start= disabled'
-    cmd.exe /c 'sc stop RSoPProv'
-    cmd.exe /c 'sc config RSoPProv start= disabled'
-    cmd.exe /c 'sc stop SCardSvr'
-    cmd.exe /c 'sc config SCardSvr start= disabled'
-    cmd.exe /c 'sc stop lanmanserver'
-    cmd.exe /c 'sc config lanmanserver start= disabled'
-    cmd.exe /c 'sc stop Sacsvr'
-    cmd.exe /c 'sc config Sacsvr start= disabled'
-    cmd.exe /c 'sc stop TermService'
-    cmd.exe /c 'sc config TermService start= disabled'
-    cmd.exe /c 'sc stop uploadmgr'
-    cmd.exe /c 'sc config uploadmgr start= disabled'
-    cmd.exe /c 'sc stop VDS'
-    cmd.exe /c 'sc config VDS start= disabled'
-    cmd.exe /c 'sc stop VSS'
-    cmd.exe /c 'sc config VSS start= disabled'
-    cmd.exe /c 'sc stop WINS'
-    cmd.exe /c 'sc config WINS start= disabled'
-    cmd.exe /c 'sc stop CscService'
-    cmd.exe /c 'sc config CscService start= disabled'
-    cmd.exe /c 'sc stop hidserv'
-    cmd.exe /c 'sc config hidserv start= disabled'
-    cmd.exe /c 'sc stop IPBusEnum'
-    cmd.exe /c 'sc config IPBusEnum start= disabled'
-    cmd.exe /c 'sc stop PolicyAgent'
-    cmd.exe /c 'sc config PolicyAgent start= disabled'
-    cmd.exe /c 'sc stop SCPolicySvc'
-    cmd.exe /c 'sc config SCPolicySvc start= disabled'
-    cmd.exe /c 'sc stop SharedAccess'
-    cmd.exe /c 'sc config SharedAccess start= disabled'
-    cmd.exe /c 'sc stop SSDPSRV'
-    cmd.exe /c 'sc config SSDPSRV start= disabled'
-    cmd.exe /c 'sc stop Themes'
-    cmd.exe /c 'sc config Themes start= disabled'
-    cmd.exe /c 'sc stop upnphost'
-    cmd.exe /c 'sc config upnphost start= disabled'
-    cmd.exe /c 'sc stop nfssvc'
-    cmd.exe /c 'sc config nfssvc start= disabled'
-    cmd.exe /c 'sc stop nfsclnt'
-    cmd.exe /c 'sc config nfsclnt start= disabled'
-    cmd.exe /c 'sc stop MSSQLServerADHelper'
-    cmd.exe /c 'sc config MSSQLServerADHelper start= disabled'
-    cmd.exe /c 'sc stop SharedAccess'
-    cmd.exe /c 'sc config SharedAccess start= disabled'
-    cmd.exe /c 'sc stop UmRdpService'
-    cmd.exe /c 'sc config UmRdpService start= disabled'
-    cmd.exe /c 'sc stop SessionEnv'
-    cmd.exe /c 'sc config SessionEnv start= disabled'
-    cmd.exe /c 'sc stop Server'
-    cmd.exe /c 'sc config Server start= disabled'
-    cmd.exe /c 'sc stop TeamViewer'
-    cmd.exe /c 'sc config TeamViewer start= disabled'
-    cmd.exe /c 'sc stop TeamViewer7'
-    cmd.exe /c 'sc config start= disabled'
-    cmd.exe /c 'sc stop HomeGroupListener'
-    cmd.exe /c 'sc config HomeGroupListener start= disabled'
-    cmd.exe /c 'sc stop HomeGroupProvider'
-    cmd.exe /c 'sc config HomeGroupProvider start= disabled'
-    cmd.exe /c 'sc stop AxInstSV'
-    cmd.exe /c 'sc config AXInstSV start= disabled'
-    cmd.exe /c 'sc stop Netlogon'
-    cmd.exe /c 'sc config Netlogon start= disabled'
-    cmd.exe /c 'sc stop lltdsvc'
-    cmd.exe /c 'sc config lltdsvc start= disabled'
-    cmd.exe /c 'sc stop iphlpsvc'
-    cmd.exe /c 'sc config iphlpsvc start= disabled'
-    cmd.exe /c 'sc stop AdobeARMservice'
-    cmd.exe /c 'sc config AdobeARMservice start= disabled'
+    cmd.exe /c 'sc stop WmdmPmSN' -Force -norestart
+    cmd.exe /c 'sc config WmdmPmSN start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop helpsvc' -Force -norestart
+    cmd.exe /c 'sc config helpsvc start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop Spooler' -Force -norestart
+    cmd.exe /c 'sc config Spooler start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop RDSessMgr' -Force -norestart
+    cmd.exe /c 'sc config RDSessMgr start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop RSoPProv' -Force -norestart
+    cmd.exe /c 'sc config RSoPProv start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop SCardSvr' -Force -norestart
+    cmd.exe /c 'sc config SCardSvr start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop lanmanserver' -Force -norestart
+    cmd.exe /c 'sc config lanmanserver start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop Sacsvr' -Force -norestart
+    cmd.exe /c 'sc config Sacsvr start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop TermService' -Force -norestart
+    cmd.exe /c 'sc config TermService start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop uploadmgr' -Force -norestart
+    cmd.exe /c 'sc config uploadmgr start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop VDS' -Force -norestart
+    cmd.exe /c 'sc config VDS start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop VSS' -Force -norestart
+    cmd.exe /c 'sc config VSS start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop WINS' -Force -norestart
+    cmd.exe /c 'sc config WINS start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop CscService' -Force -norestart
+    cmd.exe /c 'sc config CscService start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop hidserv' -Force -norestart
+    cmd.exe /c 'sc config hidserv start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop IPBusEnum' -Force -norestart
+    cmd.exe /c 'sc config IPBusEnum start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop PolicyAgent' -Force -norestart
+    cmd.exe /c 'sc config PolicyAgent start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop SCPolicySvc' -Force -norestart
+    cmd.exe /c 'sc config SCPolicySvc start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop SharedAccess' -Force -norestart
+    cmd.exe /c 'sc config SharedAccess start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop SSDPSRV' -Force -norestart
+    cmd.exe /c 'sc config SSDPSRV start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop Themes' -Force -norestart
+    cmd.exe /c 'sc config Themes start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop upnphost' -Force -norestart
+    cmd.exe /c 'sc config upnphost start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop nfssvc' -Force -norestart
+    cmd.exe /c 'sc config nfssvc start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop nfsclnt' -Force -norestart
+    cmd.exe /c 'sc config nfsclnt start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop MSSQLServerADHelper' -Force -norestart
+    cmd.exe /c 'sc config MSSQLServerADHelper start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop SharedAccess' -Force -norestart
+    cmd.exe /c 'sc config SharedAccess start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop UmRdpService' -Force -norestart
+    cmd.exe /c 'sc config UmRdpService start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop SessionEnv' -Force -norestart
+    cmd.exe /c 'sc config SessionEnv start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop Server' -Force -norestart
+    cmd.exe /c 'sc config Server start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop TeamViewer' -Force -norestart
+    cmd.exe /c 'sc config TeamViewer start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop TeamViewer7' -Force -norestart
+    cmd.exe /c 'sc config start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop HomeGroupListener' -Force -norestart
+    cmd.exe /c 'sc config HomeGroupListener start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop HomeGroupProvider' -Force -norestart
+    cmd.exe /c 'sc config HomeGroupProvider start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop AxInstSV' -Force -norestart
+    cmd.exe /c 'sc config AXInstSV start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop Netlogon' -Force -norestart
+    cmd.exe /c 'sc config Netlogon start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop lltdsvc' -Force -norestart
+    cmd.exe /c 'sc config lltdsvc start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop iphlpsvc' -Force -norestart
+    cmd.exe /c 'sc config iphlpsvc start= disabled' -Force -norestart
+    cmd.exe /c 'sc stop AdobeARMservice' -Force -norestart
+    cmd.exe /c 'sc config AdobeARMservice start= disabled' -Force -norestart
 
 # feature disabling
     Write-Warning "disabling useless and insecure stuff"
-     dism /online /disable-feature /featurename:IIS-WebServerRole
-	dism /online /disable-feature /featurename:IIS-WebServer
-	dism /online /disable-feature /featurename:IIS-CommonHttpFeatures
-	dism /online /disable-feature /featurename:IIS-HttpErrors
-	dism /online /disable-feature /featurename:IIS-HttpRedirect
-	dism /online /disable-feature /featurename:IIS-ApplicationDevelopment
-	dism /online /disable-feature /featurename:IIS-NetFxExtensibility
-	dism /online /disable-feature /featurename:IIS-NetFxExtensibility45
-	dism /online /disable-feature /featurename:IIS-HealthAndDiagnostics
-	dism /online /disable-feature /featurename:IIS-HttpLogging
-	dism /online /disable-feature /featurename:IIS-LoggingLibraries
-	dism /online /disable-feature /featurename:IIS-RequestMonitor
-	dism /online /disable-feature /featurename:IIS-HttpTracing
-	dism /online /disable-feature /featurename:IIS-Security
-	dism /online /disable-feature /featurename:IIS-URLAuthorization
-	dism /online /disable-feature /featurename:IIS-RequestFiltering
-	dism /online /disable-feature /featurename:IIS-IPSecurity
-	dism /online /disable-feature /featurename:IIS-Performance
-	dism /online /disable-feature /featurename:IIS-HttpCompressionDynamic
-	dism /online /disable-feature /featurename:IIS-WebServerManagementTools
-	dism /online /disable-feature /featurename:IIS-ManagementScriptingTools
-	dism /online /disable-feature /featurename:IIS-IIS6ManagementCompatibility
-	dism /online /disable-feature /featurename:IIS-Metabase
-	dism /online /disable-feature /featurename:IIS-HostableWebCore
-	dism /online /disable-feature /featurename:IIS-StaticContent
-	dism /online /disable-feature /featurename:IIS-DefaultDocument
-	dism /online /disable-feature /featurename:IIS-DirectoryBrowsing
-	dism /online /disable-feature /featurename:IIS-WebDAV
-	dism /online /disable-feature /featurename:IIS-WebSockets
-	dism /online /disable-feature /featurename:IIS-ApplicationInit
-	dism /online /disable-feature /featurename:IIS-ASPNET
-	dism /online /disable-feature /featurename:IIS-ASPNET45
-	dism /online /disable-feature /featurename:IIS-ASP
-	dism /online /disable-feature /featurename:IIS-CGI 
-	dism /online /disable-feature /featurename:IIS-ISAPIExtensions
-	dism /online /disable-feature /featurename:IIS-ISAPIFilter
-	dism /online /disable-feature /featurename:IIS-ServerSideIncludes
-	dism /online /disable-feature /featurename:IIS-CustomLogging
-	dism /online /disable-feature /featurename:IIS-BasicAuthentication
-	dism /online /disable-feature /featurename:IIS-HttpCompressionStatic
-	dism /online /disable-feature /featurename:IIS-ManagementConsole
-	dism /online /disable-feature /featurename:IIS-ManagementService
-	dism /online /disable-feature /featurename:IIS-WMICompatibility
-	dism /online /disable-feature /featurename:IIS-LegacyScripts
-  	dism /online /disable-feature /featurename:IIS-LegacySnapIn
-  	dism /online /disable-feature /featurename:IIS-FTPServer
-	dism /online /disable-feature /featurename:IIS-FTPSvc
-	dism /online /disable-feature /featurename:IIS-FTPExtensibility
-	dism /online /disable-feature /featurename:TFTP
-	dism /online /disable-feature /featurename:TelnetClient
-	dism /online /disable-feature /featurename:TelnetServer
-    dism /online /disable-feature /featurename:"SMB1Protocol"
-    Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force -norestart
+     dism /online /disable-feature /featurename:IIS-WebServerRole -Force -norestart
+	dism /online /disable-feature /featurename:IIS-WebServer -Force -norestart
+	dism /online /disable-feature /featurename:IIS-CommonHttpFeatures -Force -norestart
+	dism /online /disable-feature /featurename:IIS-HttpErrors -Force -norestart
+	dism /online /disable-feature /featurename:IIS-HttpRedirect -Force -norestart
+	dism /online /disable-feature /featurename:IIS-ApplicationDevelopment -Force -norestart
+	dism /online /disable-feature /featurename:IIS-NetFxExtensibility -Force -norestart
+	dism /online /disable-feature /featurename:IIS-NetFxExtensibility45 -Force -norestart
+	dism /online /disable-feature /featurename:IIS-HealthAndDiagnostics -Force -norestart
+	dism /online /disable-feature /featurename:IIS-HttpLogging -Force -norestart
+	dism /online /disable-feature /featurename:IIS-LoggingLibraries -Force -norestart
+	dism /online /disable-feature /featurename:IIS-RequestMonitor -Force -norestart
+	dism /online /disable-feature /featurename:IIS-HttpTracing -Force -norestart
+	dism /online /disable-feature /featurename:IIS-Security -Force -norestart
+	dism /online /disable-feature /featurename:IIS-URLAuthorization -Force -norestart
+	dism /online /disable-feature /featurename:IIS-RequestFiltering -Force -norestart
+	dism /online /disable-feature /featurename:IIS-IPSecurity -Force -norestart
+	dism /online /disable-feature /featurename:IIS-Performance -Force -norestart
+	dism /online /disable-feature /featurename:IIS-HttpCompressionDynamic -Force -norestart
+	dism /online /disable-feature /featurename:IIS-WebServerManagementTools -Force -norestart
+	dism /online /disable-feature /featurename:IIS-ManagementScriptingTools -Force -norestart
+	dism /online /disable-feature /featurename:IIS-IIS6ManagementCompatibility -Force -norestart
+	dism /online /disable-feature /featurename:IIS-Metabase -Force -norestart
+	dism /online /disable-feature /featurename:IIS-HostableWebCore -Force -norestart
+	dism /online /disable-feature /featurename:IIS-StaticContent -Force -norestart
+	dism /online /disable-feature /featurename:IIS-DefaultDocument -Force -norestart
+	dism /online /disable-feature /featurename:IIS-DirectoryBrowsing -Force -norestart
+	dism /online /disable-feature /featurename:IIS-WebDAV -Force -norestart
+	dism /online /disable-feature /featurename:IIS-WebSockets -Force -norestart
+	dism /online /disable-feature /featurename:IIS-ApplicationInit -Force -norestart
+	dism /online /disable-feature /featurename:IIS-ASPNET -Force -norestart
+	dism /online /disable-feature /featurename:IIS-ASPNET45 -Force -norestart
+	dism /online /disable-feature /featurename:IIS-ASP -Force -norestart
+	dism /online /disable-feature /featurename:IIS-CGI -Force -norestart
+	dism /online /disable-feature /featurename:IIS-ISAPIExtensions -Force -norestart
+	dism /online /disable-feature /featurename:IIS-ISAPIFilter -Force -norestart
+	dism /online /disable-feature /featurename:IIS-ServerSideIncludes -Force -norestart
+	dism /online /disable-feature /featurename:IIS-CustomLogging -Force -norestart
+	dism /online /disable-feature /featurename:IIS-BasicAuthentication -Force -norestart
+	dism /online /disable-feature /featurename:IIS-HttpCompressionStatic -Force -norestart
+	dism /online /disable-feature /featurename:IIS-ManagementConsole -Force -norestart
+	dism /online /disable-feature /featurename:IIS-ManagementService -Force -norestart
+	dism /online /disable-feature /featurename:IIS-WMICompatibility -Force -norestart
+	dism /online /disable-feature /featurename:IIS-LegacyScripts -Force -norestart
+  	dism /online /disable-feature /featurename:IIS-LegacySnapIn -Force -norestart
+  	dism /online /disable-feature /featurename:IIS-FTPServer -Force -norestart
+	dism /online /disable-feature /featurename:IIS-FTPSvc -Force -norestart
+	dism /online /disable-feature /featurename:IIS-FTPExtensibility -Force -norestart
+	dism /online /disable-feature /featurename:TFTP -Force -norestart
+	dism /online /disable-feature /featurename:TelnetClient -Force -norestart
+	dism /online /disable-feature /featurename:TelnetServer -Force -norestart
+        dism /online /disable-feature /featurename:SMB1Protocol -Force -norestart
+        Set-SmbServerConfiguration -EnableSMB1Protocol $false -Force -norestart
 
 echo 'done :)'
 }
